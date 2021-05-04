@@ -158,7 +158,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 179.2}
-  m_SizeDelta: {x: 600, y: 50}
+  m_SizeDelta: {x: 700, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &21850659
 MonoBehaviour:
@@ -180,7 +180,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Simple Player Movement In Unity
+  m_text: "Implementing a laser Cooldown in\_Unity"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -525,7 +525,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 696086759}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.7537991, y: -0.57, z: -3.6142569}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -543,6 +543,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 363da5eba5df7cd43b12e7a0ca1cc486, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _laserPrefab: {fileID: 509974258464040400, guid: 0d83c25fd084eb94eb35866bf8924c5d, type: 3}
+  _fireRate: 0.2
 --- !u!1 &737127490
 GameObject:
   m_ObjectHideFlags: 0
@@ -561,7 +563,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &737127491
 MonoBehaviour:
   m_ObjectHideFlags: 0
