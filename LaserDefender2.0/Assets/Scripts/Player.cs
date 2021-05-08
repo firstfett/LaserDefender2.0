@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Player : MonoBehaviour
 {
@@ -13,12 +14,16 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float _fireRate = 0.2f;
     private float _canFire = -1f;
+    [SerializeField]
+    private int _lives = 3;
 
+    public TextMeshProUGUI textDisplay;
 
     // Start is called before the first frame update
     void Start()
     {
         transform.position = new Vector3(0, 1, 0);
+        
     }
 
     // Update is called once per frame
@@ -30,6 +35,10 @@ public class Player : MonoBehaviour
         {
             FireLaser();
         }
+
+       
+        textDisplay.text = "Lives = " + _lives;      
+        
     }
 
     void PlayerMovement()
@@ -56,5 +65,16 @@ public class Player : MonoBehaviour
     {
         _canFire = Time.time + _fireRate;
         Instantiate(_laserPrefab, transform.position + _yOffset, Quaternion.identity);
+    }
+
+    public void Damage()
+    {
+        _lives--;
+        
+        if (_lives <= 0)
+        {
+            textDisplay.text = "Lives = 0";
+            Destroy(this.gameObject);
+        }
     }
 }
