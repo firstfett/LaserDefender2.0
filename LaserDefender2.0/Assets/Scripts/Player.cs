@@ -17,13 +17,23 @@ public class Player : MonoBehaviour
     [SerializeField]
     private int _lives = 3;
 
+    private SpawnManager _spawnManager;
+
+    private GameObject[] _enemyGameObjects;
+
     public TextMeshProUGUI textDisplay;
+    public TextMeshProUGUI numberOfEnemiesInScene;
 
     // Start is called before the first frame update
     void Start()
     {
         transform.position = new Vector3(0, 1, 0);
-        
+        _spawnManager = GameObject.Find("Spawn_Manager").GetComponent<SpawnManager>();
+
+        if (_spawnManager == null)
+        {
+            Debug.LogError("The Spawn Manager is NULL.");
+        }
     }
 
     // Update is called once per frame
@@ -36,8 +46,11 @@ public class Player : MonoBehaviour
             FireLaser();
         }
 
+        _enemyGameObjects = GameObject.FindGameObjectsWithTag("Enemy");
+
        
-        textDisplay.text = "Lives = " + _lives;      
+        textDisplay.text = "Lives = " + _lives;
+        numberOfEnemiesInScene.text = "Enemies = " + _enemyGameObjects.Length;
         
     }
 
@@ -74,6 +87,7 @@ public class Player : MonoBehaviour
         if (_lives <= 0)
         {
             textDisplay.text = "Lives = 0";
+            _spawnManager.OnPlayerDeath();
             Destroy(this.gameObject);
         }
     }

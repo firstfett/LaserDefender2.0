@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     private float _speed = 4;
     private Vector3 _moveStraight = new Vector3(1, 1, 0);
+    private float _randomValue = 9.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -19,11 +20,16 @@ public class Enemy : MonoBehaviour
     {
         transform.Translate(_moveStraight * -1 * _speed * Time.deltaTime);
 
+        if (GameObject.FindGameObjectWithTag("Player") == null && transform.position.y < -7.0f)
+        {
+            Destroy(this.gameObject);
+        }
+
         if (transform.position.y < -7.0f)
         {
-            float randomX = Random.Range(-9f, 9f);
-            transform.position = new Vector3(randomX, 8f, 0f);
-        }
+            float randomX = Random.Range(-_randomValue, _randomValue);
+            transform.position = new Vector3(randomX, 8f, 0f);            
+        }        
     }
 
     private void OnTriggerEnter(Collider other)
@@ -50,7 +56,7 @@ public class Enemy : MonoBehaviour
     }
 
     void SpawnEnemy()
-    {
-        transform.position = new Vector3(Random.Range(-10, 10), 8, 0);
+    {        
+        transform.position = new Vector3(Random.Range(-_randomValue, _randomValue), 8, 0);        
     }
 }
